@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="manifest" href="./manifest.webmanifest" />
+<meta name="theme-color" content="#214c31" />
+<meta name="description" content="Explainable crop planning, rotation, weather advisories and government-scheme finder for Indian small farmers." />
+<link rel="icon" type="image/png" href="./icons/icon-192.png" />
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+<title>KrishiGuide AI — Smarter decisions for every farm</title>
+<link rel="stylesheet" href="./css/app.css" />
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <a class="brand" href="#/planner" data-view="planner">
+      <span class="brand-mark">❧</span>
+      <span><b>KrishiGuide</b><small data-i18n="brandSub">FARM DESK</small></span>
+    </a>
+    <div class="side-caption">WORKSPACE</div>
+    <nav aria-label="Main navigation" style="display:flex;flex-direction:column;gap:3px">
+      <button class="side-link active" data-view="planner"><span class="ico">⌂</span><span data-i18n="navPlanner">Crop planner</span></button>
+      <button class="side-link" data-view="rotation"><span class="ico">♻</span><span data-i18n="navRotation">Rotation planner</span></button>
+      <button class="side-link" data-view="calendar"><span class="ico">📅</span><span data-i18n="navCalendar">Crop journey</span></button>
+      <button class="side-link" data-view="signals"><span class="ico">🌦</span><span data-i18n="navSignals">Farm signals</span></button>
+      <button class="side-link" data-view="simulator"><span class="ico">⌁</span><span data-i18n="navSimulator">Profit simulator</span></button>
+      <button class="side-link" data-view="schemes"><span class="ico">◎</span><span data-i18n="navSchemes">Govt. schemes</span></button>
+      <button class="side-link" data-view="assistant"><span class="ico">✳</span><span data-i18n="navAssistant">Ask KrishiGuide</span></button>
+      <button class="side-link" data-view="plans"><span class="ico">▣</span><span data-i18n="navPlans">Saved plans &amp; account</span></button>
+    </nav>
+    <div class="side-spacer"></div>
+    <button class="side-user" data-view="plans" type="button">
+      <span class="avatar">K</span>
+      <span><b>KrishiGuide workspace</b><small data-i18n="navPlans">Saved plans &amp; account</small></span>
+    </button>
+  </aside>
+
+  <div class="content">
+    <header class="topbar">
+      <span class="page-title" id="currentPageName">Crop planner</span>
+      <span class="top-spacer"></span>
+      <span class="live-badge"><i></i><span id="healthStatus">Connecting</span></span>
+      <button class="top-action" id="refreshData" type="button" data-i18n="refresh">↻ Refresh</button>
+      <select class="lang" id="language" aria-label="Language">
+        <option value="en">English</option>
+        <option value="hi">हिन्दी</option>
+        <option value="mr">मराठी</option>
+      </select>
+    </header>
+
+    <main>
+      <section class="view active" id="view-planner"></section>
+      <section class="view" id="view-rotation"></section>
+      <section class="view" id="view-calendar"></section>
+      <section class="view" id="view-signals"></section>
+      <section class="view" id="view-simulator"></section>
+      <section class="view" id="view-schemes"></section>
+      <section class="view" id="view-assistant"></section>
+      <section class="view" id="view-plans"></section>
+    </main>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+<div class="modal-backdrop" id="cropModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <div class="modal-header"><h3 id="modalTitle">Crop details</h3><button id="closeModal" aria-label="Close details">✕</button></div>
+    <div class="modal-content" id="modalContent"></div>
+  </div>
+</div>
+
+<noscript><p style="padding:24px;font-family:sans-serif">KrishiGuide needs JavaScript enabled to run.</p></noscript>
+<script type="module" src="./js/main.js?v=3"></script>
+<script>
+if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+  navigator.serviceWorker.register('./service-worker.js').catch(() => {});
+}
+</script>
+</body>
+</html>
