@@ -21,6 +21,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
+from . import buyers
 from .data_adapters import get_mandi_prices, get_weather
 from .llm import ask_llm, llm_config
 
@@ -48,6 +49,7 @@ async def lifespan(_app):
         columns = {row[1] for row in conn.execute('PRAGMA table_info(plans)')}
         if 'user_id' not in columns:
             conn.execute('ALTER TABLE plans ADD COLUMN user_id INTEGER')
+        buyers.init(conn)
     yield
 
 
@@ -322,7 +324,7 @@ def assistant_context(profile: FarmProfile | None) -> str:
 @app.get('/api/health')
 def health():
     return {'status': 'ok', 'database': 'sqlite', 'crop_count': len(CROPS),
-            'features': ['recommendations', 'rotation', 'advisory', 'timeline', 'water-plan', 'simulator', 'schemes-eligibility', 'assistant'],
+            'features': ['recommendations', 'rotation', 'advisory', 'timeline', 'water-plan', 'simulator', 'schemes-eligibility', 'assistant', 'buyer-offers'],
             'assistant_mode': 'llm' if llm_config()['enabled'] else 'rules'}
 
 
@@ -619,6 +621,9 @@ def assistant(req: AssistantRequest):
     return {'mode': 'rules', 'answer': rule_based_answer(req.question, req.lang, req.profile),
             'sources': ['KrishiGuide crop catalogue'],
             'disclaimer': 'Rule-based starter assistant (no LLM key configured). Verify locally with a KVK or agriculture officer.'}
+
+
+app.include_router(buyers.build_router(db))
 
 
 # Static frontend must be mounted LAST so /api and /docs routes match first.

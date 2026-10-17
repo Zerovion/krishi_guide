@@ -126,3 +126,15 @@ Do not use this app alone for planting, pesticide, fertilizer, insurance or fina
 
 Soil Health Card https://soilhealth.dac.gov.in · IMD agromet https://mausam.imd.gov.in/responsive/agromet_adv_ser_district_current_lo.php ·
 ICAR advisories https://icar.gov.in/en/kharif-agro-advisory-farmers · AGMARKNET/e-NAM https://www.enam.gov.in/web/dashboard/agmarknet
+
+
+## Buyer prices (hackathon feature)
+
+Buyers register, post offers that auto-expire after their valid-until date, and farmers compare them in the **Buyer prices** sidebar item.
+
+- Farmer side: filter by crop, buyer district and distance; the best price per crop is highlighted; every offer is shown next to the government MSP (`backend/data/msp.json`) and the latest mandi price (live from data.gov.in when `DATA_GOV_IN_API_KEY` is set).
+- Trust: only buyers approved by the admin show by default; farmers can report an offer (3 reports hide it for review).
+- Offline: the last seen offers are cached on the device.
+- Env vars: `ADMIN_KEY` (admin password, default `krishi-admin`, **change it when deploying**), `KRISHI_SEED_DEMO=0` to turn off demo buyers/offers.
+- Demo logins: buyer `9000000001` / `demo123` (verified), `9000000004` / `demo123` (pending). Admin tab key: `krishi-admin`.
+- Storage: all SQL is in `backend/app/buyers.py`. On Render's free tier the SQLite disk resets on restart, so demo data is re-seeded each start; real accounts need a persistent database before production.

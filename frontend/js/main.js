@@ -10,6 +10,7 @@ import { renderSchemes } from './views/schemes.js';
 import { renderAssistant } from './views/assistant.js';
 import { renderPlans } from './views/plans.js';
 import { renderSoil } from './views/soil.js';
+import { renderPrices } from './views/prices.js';
 
 export const state = {
   lang: localStorage.getItem('krishi_lang') || 'en',
@@ -98,6 +99,7 @@ function applyI18n() {
 const VIEWS = {
   planner: { render: renderPlanner, title: () => t('navPlanner') },
   soil: { render: renderSoil, title: () => t('navSoil'), subs: ['card', 'finder', 'advice', 'where', 'history'] },
+  prices: { render: renderPrices, title: () => t('navPrices'), subs: ['buyer', 'admin'] },
   rotation: { render: renderRotation, title: () => t('navRotation') },
   calendar: { render: renderCalendar, title: () => t('navCalendar') },
   signals: { render: renderSignals, title: () => t('navSignals') },

@@ -1,0 +1,18 @@
+{
+  "note": "Approximate district centre points (lat, lon) for Maharashtra, used only for rough distance filtering.",
+  "state": "Maharashtra",
+  "districts": {
+    "Ahmednagar": [19.09, 74.74], "Akola": [20.71, 77.00], "Amravati": [20.93, 77.75],
+    "Chhatrapati Sambhajinagar": [19.88, 75.34], "Beed": [18.99, 75.76], "Bhandara": [21.17, 79.65],
+    "Buldhana": [20.53, 76.18], "Chandrapur": [19.96, 79.30], "Dhule": [20.90, 74.78],
+    "Gadchiroli": [20.18, 80.00], "Gondia": [21.46, 80.19], "Hingoli": [19.72, 77.15],
+    "Jalgaon": [21.00, 75.57], "Jalna": [19.84, 75.88], "Kolhapur": [16.70, 74.24],
+    "Latur": [18.40, 76.58], "Mumbai": [19.08, 72.88], "Nagpur": [21.15, 79.09],
+    "Nanded": [19.15, 77.32], "Nandurbar": [21.37, 74.24], "Nashik": [20.00, 73.79],
+    "Dharashiv": [18.18, 76.04], "Palghar": [19.70, 72.77], "Parbhani": [19.27, 76.77],
+    "Pune": [18.52, 73.86], "Raigad": [18.64, 72.87], "Ratnagiri": [16.99, 73.30],
+    "Sangli": [16.85, 74.57], "Satara": [17.68, 74.00], "Sindhudurg": [16.35, 73.75],
+    "Solapur": [17.66, 75.91], "Thane": [19.22, 72.98], "Wardha": [20.75, 78.60],
+    "Washim": [20.11, 77.13], "Yavatmal": [20.39, 78.12]
+  }
+}

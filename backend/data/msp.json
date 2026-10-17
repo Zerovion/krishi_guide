@@ -1,0 +1,20 @@
+{
+  "note": "Government MSP in Rs per quintal. Update this file when new MSPs are announced. Onion and sugarcane have no MSP.",
+  "crops": {
+    "paddy":     {"price": 2441, "label": "Paddy (common)",       "season": "Kharif 2026-27"},
+    "jowar":     {"price": 4023, "label": "Jowar (hybrid)",       "season": "Kharif 2026-27"},
+    "bajra":     {"price": 2900, "label": "Bajra",                "season": "Kharif 2026-27"},
+    "maize":     {"price": 2410, "label": "Maize",                "season": "Kharif 2026-27"},
+    "moong":     {"price": 8780, "label": "Moong",                "season": "Kharif 2026-27"},
+    "groundnut": {"price": 7517, "label": "Groundnut",            "season": "Kharif 2026-27"},
+    "soybean":   {"price": 5708, "label": "Soybean (yellow)",     "season": "Kharif 2026-27"},
+    "cotton":    {"price": 8267, "label": "Cotton (medium staple)","season": "Kharif 2026-27"},
+    "wheat":     {"price": 2585, "label": "Wheat",                "season": "Rabi 2026-27"},
+    "chickpea":  {"price": 5875, "label": "Gram (chickpea)",      "season": "Rabi 2026-27"},
+    "mustard":   {"price": 6200, "label": "Rapeseed & mustard",   "season": "Rabi 2026-27"}
+  },
+  "sources": [
+    "https://www.thestatesman.com/india/cabinet-approves-msp-for-rabi-crops-for-marketing-season-2026-27-1503493857.html",
+    "https://www.global-agriculture.com/india-region/india-raises-msp-for-kharif-crops-for-2026-27-soybean-seed-sees-7-increase-per-quintal/"
+  ]
+}
