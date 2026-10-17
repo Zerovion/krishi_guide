@@ -4,6 +4,13 @@ import { $, esc, money, readProfileForm, saveProfile, toast, t, showCropModal, s
 import { rankCrops } from '../offline.js';
 
 let ranked = [];
+let showAll = false;
+const INITIAL_CROPS = 12;
+const MORE_TEXT = {
+  more: { en: 'Show all {n} crops', hi: 'सभी {n} फसलें दिखाएँ', mr: 'सर्व {n} पिके दाखवा' },
+  less: { en: 'Show fewer crops', hi: 'कम फसलें दिखाएँ', mr: 'कमी पिके दाखवा' },
+};
+const moreText = (key, n) => (MORE_TEXT[key][state.lang] || MORE_TEXT[key].en).replace('{n}', n);
 
 export async function renderPlanner() {
   const p = state.profile;
@@ -108,12 +115,17 @@ async function refresh() {
     ranked = rankCrops(state.crops, state.profile);   // same rules, computed on-device
     offline = true;
   }
-  const top = ranked.slice(0, 6);
+  const top = showAll ? ranked : ranked.slice(0, INITIAL_CROPS);
   list.innerHTML = (offline ? `<div class="notice" style="grid-column:1/-1"><span>⚡</span><div><strong>${esc(t('offlineMode'))}</strong> ${esc(t('offlineModeText'))}</div></div>` : '')
-    + top.map((item, i) => cropCard(item, i === 0)).join('');
+    + top.map((item, i) => cropCard(item, i === 0)).join('')
+    + (ranked.length > INITIAL_CROPS
+      ? `<div style="grid-column:1/-1;text-align:center"><button type="button" class="btn btn-ghost" id="toggleAllCrops">${esc(showAll ? moreText('less') : moreText('more', ranked.length))}</button></div>`
+      : '');
   $('metricTopName').textContent = top[0].crop.name;
   $('metricTopScore').textContent = `${top[0].score}% catalogue fit`;
   fillCostOptions(top[0].crop.id);
+  const toggle = $('toggleAllCrops');
+  if (toggle) toggle.addEventListener('click', () => { showAll = !showAll; refresh(); });
   list.querySelectorAll('[data-details]').forEach((b) => b.addEventListener('click', () => {
     const item = ranked.find((r) => r.crop.id === b.dataset.details);
     showCropModal(item.crop);

@@ -8,6 +8,18 @@ const DISTRICT_ASSOCIATIONS = {
   paddy: ['assam', 'kerala', 'west bengal', 'odisha', 'chhattisgarh'],
   mustard: ['rajasthan', 'bharatpur', 'alwar', 'jaipur'],
   apple: ['shimla', 'kullu', 'himachal pradesh'],
+  chia: ['maharashtra', 'karnataka', 'telangana', 'solapur', 'sangli', 'kolhapur'],
+  quinoa: ['odisha', 'gujarat', 'rajasthan', 'maharashtra'],
+  amaranth: ['uttarakhand', 'himachal pradesh', 'jammu'],
+  buckwheat: ['himachal pradesh', 'uttarakhand', 'sikkim', 'kullu'],
+  moringa: ['maharashtra', 'karnataka', 'tamil nadu', 'andhra pradesh', 'telangana'],
+  dragon_fruit: ['maharashtra', 'gujarat', 'karnataka', 'solapur', 'sangli'],
+  avocado: ['kerala', 'tamil nadu', 'karnataka', 'kodagu', 'nilgiri', 'meghalaya', 'sikkim'],
+  passion_fruit: ['assam', 'meghalaya', 'nagaland', 'manipur', 'mizoram', 'kerala', 'karnataka'],
+  cape_gooseberry: ['maharashtra', 'karnataka', 'himachal pradesh', 'uttarakhand'],
+  saffron: ['kashmir', 'pulwama', 'jammu'],
+  lavender: ['jammu', 'kashmir', 'uttarakhand', 'himachal pradesh'],
+  rosemary: ['maharashtra', 'gujarat', 'karnataka', 'tamil nadu'],
 };
 
 // Python's round() uses banker's rounding; match it so scores are identical.
