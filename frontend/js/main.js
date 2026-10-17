@@ -97,7 +97,7 @@ function applyI18n() {
 // ------------------------------------------------------------------ routing
 const VIEWS = {
   planner: { render: renderPlanner, title: () => t('navPlanner') },
-  soil: { render: renderSoil, title: () => t('navSoil'), subs: ['card', 'finder', 'advice'] },
+  soil: { render: renderSoil, title: () => t('navSoil'), subs: ['card', 'finder', 'advice', 'where', 'history'] },
   rotation: { render: renderRotation, title: () => t('navRotation') },
   calendar: { render: renderCalendar, title: () => t('navCalendar') },
   signals: { render: renderSignals, title: () => t('navSignals') },

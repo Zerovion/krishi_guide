@@ -315,3 +315,21 @@ html[lang=hi] .eyebrow,html[lang=mr] .eyebrow,html[lang=hi] .side-caption,html[l
 .soil-steps li{margin:5px 0}
 
 @media(prefers-reduced-motion:reduce){.soil-screen.enter{animation:none}}
+
+/* Soil care: where to get tested + test history */
+.soil-routes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:10px}
+.soil-route{border:1px solid var(--line);border-radius:12px;background:#fff;padding:14px 15px}
+.soil-route b{font-size:13.5px}
+.soil-route p{margin:6px 0 0;font-size:12px;color:#54655a;line-height:1.65}
+.soil-sample{margin:10px 0 0;padding-left:20px;font-size:12.5px;color:#42503f;line-height:1.7}
+.soil-sample li{margin:9px 0;padding-left:4px}
+.soil-sample li::marker{font-weight:850;color:var(--green2)}
+.soil-links{display:grid;gap:9px;margin-top:10px}
+.soil-link{display:flex;flex-direction:column;gap:2px;text-decoration:none;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;transition:border-color .15s,background .15s}
+.soil-link:hover{border-color:#78a56a;background:#f6faee}
+.soil-link:focus-visible{outline:2px solid var(--green2);outline-offset:2px}
+.soil-link b{font-size:13px;color:var(--green)}
+.soil-link span{font-size:11px;color:var(--muted)}
+.soil-hist{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;border-top:1px solid #edf0e8;padding:14px 0}
+.soil-hist:first-of-type{border-top:0}
+.soil-hist small{color:var(--muted);font-size:11px;margin-left:6px}

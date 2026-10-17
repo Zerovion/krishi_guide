@@ -25,6 +25,7 @@ def test_soil_logic_ratings_quiz_and_translations():
       import * as d from '{(FRONT / 'js' / 'soil-data.js').as_posix()}';
       const out = {{}};
       const r = d.rateParam;
+      out.compare = [d.compareValues('ph', 8.9, 7.2), d.compareValues('oc', 0.6, 0.3), d.compareValues('n', 250, 260), d.compareValues('zn', 0.3, 0.9)];
       out.ratings = [r('ph',5.4), r('ph',6.5), r('ph',7.6), r('ph',8.6), r('ec',0.99), r('ec',3.01),
         r('oc',0.49), r('n',280), r('p',10.9), r('k',281), r('s',9), r('zn',0.59), r('b',0.5)];
       const q = (a) => d.scoreSoil(a);
@@ -53,6 +54,7 @@ def test_soil_logic_ratings_quiz_and_translations():
     out = json.loads(res.stdout)
     assert out['ratings'] == ['strong_acid', 'neutral', 'alkaline', 'strong_alkaline', 'normal', 'very_high',
                               'low', 'medium', 'low', 'high', 'low', 'deficient', 'enough']
+    assert out['compare'] == ['better', 'worse', 'same', 'better']
     assert out['quiz'] == ['black', 'red', 'sandy', 'loamy', 'clayey']
     assert out['empty'] is None
     assert out['blackAlso'] == 'clayey'          # black soils are clay-rich: say so instead of pretending certainty
@@ -71,11 +73,12 @@ def open_soil(pg):
     pg.wait_for_selector('#view-soil.active .soil-tile')
 
 
-def test_hub_offers_three_tools_and_cards_open_each(page):
+def test_hub_offers_every_tool_and_cards_open_each(page):
     open_soil(page)
-    assert page.locator('.soil-tile').count() == 3
+    assert page.locator('.soil-tile').count() == 5
     assert page.url.endswith('#/soil')
-    for sub, field in [('card', '#sp-ph'), ('finder', '.soil-opt'), ('advice', '.soil-advice, .empty-state')]:
+    for sub, field in [('card', '#sp-ph'), ('finder', '.soil-opt'), ('advice', '.soil-advice, .empty-state'),
+                       ('where', '.soil-link'), ('history', '.empty-state')]:
         page.click(f'.soil-tile[data-soil-go={sub}]')
         page.wait_for_selector(f'#view-soil .soil-tab.active[data-soil-tab={sub}]')
         assert page.url.endswith(f'#/soil/{sub}')
@@ -180,10 +183,91 @@ def test_soil_screens_do_not_overflow_on_a_phone(browser, server):
     pg = ctx.new_page()
     pg.goto(server['base'] + '/')
     pg.wait_for_selector('.crop-card', timeout=15000)
-    for sub in ['', 'card', 'finder', 'advice']:
+    for sub in ['', 'card', 'finder', 'advice', 'where', 'history']:
         pg.goto(server['base'] + '/#/soil' + (f'/{sub}' if sub else ''))
         pg.wait_for_selector('#view-soil.active .soil-screen')
         pg.fill('#sp-ph', '7') if sub == 'card' else None
         overflow = pg.evaluate('document.documentElement.scrollWidth - document.documentElement.clientWidth')
         assert overflow <= 1, f'soil/{sub} overflows by {overflow}px on mobile'
     ctx.close()
+
+
+def test_where_to_get_tested_uses_official_links_and_the_farmers_district(page):
+    page.fill('#district', 'Kolhapur, Maharashtra')
+    page.click('#farmForm button[type=submit]')
+    page.wait_for_timeout(500)
+    open_soil(page)
+    page.click('.soil-tile[data-soil-go=where]')
+    page.wait_for_selector('.soil-sample')
+    hrefs = page.eval_on_selector_all('.soil-link', 'els => els.map(e => e.getAttribute("href"))')
+    assert 'https://soilhealth.dac.gov.in/' in hrefs
+    assert 'https://kvk.icar.gov.in/' in hrefs
+    assert 'tel:18001801551' in hrefs
+    maps = next(h for h in hrefs if 'google.com/maps' in h)
+    assert 'Kolhapur' in maps and 'soil%20testing%20laboratory' in maps
+    ext = page.eval_on_selector_all('.soil-link[target=_blank]', 'els => els.map(e => e.rel)')
+    assert ext and all('noopener' in r for r in ext)
+    assert page.locator('.soil-sample li').count() == 5
+    assert '15–20 cm' in page.inner_text('.soil-sample')
+    assert 'does not list labs' in page.inner_text('#view-soil')       # honest about what the app does not do
+    page.click('[data-soil-next=card]')
+    page.wait_for_selector('#sp-ph')
+
+
+def _save_card(page, **values):
+    for k, v in values.items():
+        page.fill(f'#sp-{k}', v)
+    page.click('#soilSave')
+
+
+def test_history_records_tests_compares_them_and_deletes(page):
+    open_soil(page)
+    page.click('.soil-tile[data-soil-go=card]')
+    page.fill('#sp-plot', 'North plot')
+    _save_card(page, ph='8.9', oc='0.3', n='250')
+    page.click('#soilSave')                                           # identical re-save must not add an entry
+    page.click('.soil-tab[data-soil-tab=history]')
+    page.wait_for_selector('.soil-hist')
+    assert page.locator('.soil-hist').count() == 1
+    assert 'Add a second' not in page.inner_text('#view-soil') and 'second test' in page.inner_text('#view-soil')
+    page.click('[data-hist-new]')                                     # new test starts with an empty form
+    page.wait_for_selector('#sp-ph')
+    assert page.input_value('#sp-ph') == ''
+    page.fill('#sp-plot', 'North plot')
+    _save_card(page, ph='7.2', oc='0.6', n='255')
+    page.click('.soil-tab[data-soil-tab=history]')
+    page.wait_for_selector('.soil-hist')
+    assert page.locator('.soil-hist').count() == 2
+    cmp_text = page.inner_text('#view-soil')
+    assert 'Is it improving?' in cmp_text
+    assert page.locator('.soil-row:has-text("Soil pH") .tone-good:has-text("Better")').count() == 1
+    assert page.locator('.soil-row:has-text("Organic carbon") .tone-good:has-text("Better")').count() == 1
+    assert page.locator('.soil-row:has-text("Nitrogen") :text("Same rating")').count() == 1
+    page.reload()
+    page.wait_for_selector('.soil-hist')
+    assert page.locator('.soil-hist').count() == 2                    # survives a reload
+    # hub shows the count
+    page.click('.soil-back')
+    page.wait_for_selector('.soil-tile')
+    assert '2 tests saved' in page.inner_text('.soil-tile[data-soil-go=history]')
+    # delete the newest: advice must follow the remaining (older) test
+    page.click('.soil-tile[data-soil-go=history]')
+    page.wait_for_selector('.soil-hist')
+    page.once('dialog', lambda d: d.accept())
+    page.click('.soil-hist:first-of-type [data-hist-del]')
+    page.wait_for_function("document.querySelectorAll('.soil-hist').length === 1")
+    page.click('.soil-tab[data-soil-tab=advice]')
+    page.wait_for_selector('.soil-advice')
+    assert 'Strongly alkaline' in page.inner_text('#view-soil')       # the older pH 8.9 test is now the active card
+    assert page.errors == []
+
+
+def test_clear_button_only_clears_the_form(page):
+    open_soil(page)
+    page.click('.soil-tile[data-soil-go=card]')
+    _save_card(page, ph='6.0')
+    page.click('#soilClear')
+    assert page.input_value('#sp-ph') == ''
+    page.click('.soil-tab[data-soil-tab=history]')
+    page.wait_for_selector('.soil-hist')
+    assert page.locator('.soil-hist').count() == 1                    # the saved test is still there

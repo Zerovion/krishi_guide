@@ -17,8 +17,8 @@
 export const SOIL_UI = {
   hubEyebrow: { en: 'Know your soil, look after it', hi: 'अपनी मिट्टी को जानें, उसकी देखभाल करें', mr: 'तुमची माती ओळखा, तिची निगा राखा' },
   hubTitle: { en: 'Soil care', hi: 'मिट्टी की देखभाल', mr: 'मातीची निगा' },
-  hubDesc: { en: 'Three tools in one place. Start with whichever fits you today. You can move between them any time.', hi: 'एक जगह तीन साधन। आज जो आपके काम का हो उससे शुरू करें। कभी भी एक से दूसरे में जा सकते हैं।', mr: 'एकाच ठिकाणी तीन साधने. आज जे तुमच्या कामाचे ते निवडा. केव्हाही एकातून दुसऱ्यात जाऊ शकता.' },
-  hubHint: { en: 'Not sure where to begin? No card yet: start with "Find my soil type". Have a card: start with "Soil Health Card".', hi: 'कहाँ से शुरू करें? कार्ड नहीं है तो "अपनी मिट्टी पहचानें" से शुरू करें। कार्ड है तो "मृदा स्वास्थ्य कार्ड" से।', mr: 'कुठून सुरू करावे? पत्रिका नसेल तर "माझी माती ओळखा" पासून; पत्रिका असेल तर "मृदा आरोग्य पत्रिका" पासून.' },
+  hubDesc: { en: "Everything about your soil in one place. Start with whichever fits you today. You can move between tools any time.", hi: "अपनी मिट्टी से जुड़ी हर चीज़ एक जगह। आज जो आपके काम का हो उससे शुरू करें। कभी भी एक से दूसरे में जा सकते हैं।", mr: "तुमच्या मातीबद्दल सर्व काही एकाच ठिकाणी. आज जे तुमच्या कामाचे ते निवडा. केव्हाही एकातून दुसऱ्यात जाऊ शकता." },
+  hubHint: { en: "Not sure where to begin? No card yet: try \"Find my soil type\" or \"Where to get tested\". Have a card: start with \"Soil Health Card\".", hi: "कहाँ से शुरू करें? कार्ड नहीं है तो \"अपनी मिट्टी पहचानें\" या \"जाँच कहाँ करवाएँ\" देखें। कार्ड है तो \"मृदा स्वास्थ्य कार्ड\" से।", mr: "कुठून सुरू करावे? पत्रिका नसेल तर \"माझी माती ओळखा\" किंवा \"चाचणी कुठे करावी\" पहा; पत्रिका असेल तर \"मृदा आरोग्य पत्रिका\" पासून." },
 
   cardTitle: { en: 'Soil Health Card', hi: 'मृदा स्वास्थ्य कार्ड', mr: 'मृदा आरोग्य पत्रिका' },
   cardBlurb: { en: 'Type in the values from your card and see what each one means.', hi: 'अपने कार्ड के मान भरें और हर एक का मतलब समझें।', mr: 'तुमच्या पत्रिकेतील मूल्ये भरा आणि प्रत्येकाचा अर्थ समजून घ्या.' },
@@ -44,7 +44,7 @@ export const SOIL_UI = {
   saveCard: { en: 'Save card', hi: 'कार्ड सहेजें', mr: 'पत्रिका जतन करा' },
   clearCard: { en: 'Clear', hi: 'साफ़ करें', mr: 'पुसा' },
   cardSavedToast: { en: 'Soil Health Card saved on this device', hi: 'मृदा स्वास्थ्य कार्ड इस डिवाइस पर सहेजा गया', mr: 'मृदा आरोग्य पत्रिका या डिव्हाइसवर जतन केली' },
-  cardClearedToast: { en: 'Card cleared', hi: 'कार्ड साफ़ किया', mr: 'पत्रिका पुसली' },
+  cardClearedToast: { en: "Form cleared (your saved card is kept)", hi: "फ़ॉर्म साफ़ किया (सहेजा कार्ड सुरक्षित है)", mr: "फॉर्म पुसला (जतन केलेली पत्रिका तशीच आहे)" },
   fixFirst: { en: 'Fix the highlighted numbers first', hi: 'पहले चिह्नित अंक ठीक करें', mr: 'आधी दर्शवलेले आकडे दुरुस्त करा' },
   needOne: { en: 'Enter at least one value', hi: 'कम से कम एक मान भरें', mr: 'किमान एक मूल्य भरा' },
   invalid: { en: 'Check this number: it should be between {min} and {max}', hi: 'यह अंक जाँचें: {min} से {max} के बीच होना चाहिए', mr: 'हा आकडा तपासा: {min} ते {max} दरम्यान हवा' },
@@ -86,6 +86,58 @@ export const SOIL_UI = {
   plentyTitle: { en: 'Already plenty', hi: 'पहले से भरपूर', mr: 'आधीच भरपूर' },
   verifyNote: { en: 'Always confirm quantities and products with your local Krishi Vigyan Kendra (KVK) or agriculture officer before buying or applying anything.', hi: 'कुछ भी खरीदने या डालने से पहले मात्रा और उत्पाद अपने स्थानीय कृषि विज्ञान केंद्र (KVK) या कृषि अधिकारी से पक्का कर लें।', mr: 'काहीही खरेदी करण्यापूर्वी किंवा देण्यापूर्वी प्रमाण व उत्पादन तुमच्या स्थानिक कृषी विज्ञान केंद्र (KVK) किंवा कृषी अधिकाऱ्याकडून निश्चित करा.' },
   planCrops: { en: 'Plan crops for this soil', hi: 'इस मिट्टी के लिए फसल चुनें', mr: 'या मातीसाठी पीक निवडा' },
+
+  // --- Where to get tested + Test history
+  whereTitle: { en: "Where to get tested", hi: "जाँच कहाँ करवाएँ", mr: "चाचणी कुठे करावी" },
+  whereBlurb: { en: "Take a sample, then find a government lab, KVK or private lab.", hi: "नमूना लें, फिर सरकारी लैब, KVK या निजी लैब खोजें।", mr: "नमुना घ्या, मग सरकारी प्रयोगशाळा, KVK किंवा खासगी प्रयोगशाळा शोधा." },
+  whereDesc: { en: "Get your soil tested before you buy fertiliser. Here is how to take a sample and where to take it.", hi: "खाद खरीदने से पहले मिट्टी की जाँच करवाएँ। नमूना कैसे लें और कहाँ ले जाएँ, यहाँ देखें।", mr: "खत खरेदी करण्यापूर्वी माती तपासून घ्या. नमुना कसा घ्यायचा व कुठे न्यायचा ते येथे पहा." },
+  whereRoutes: { en: "Three ways to get a test", hi: "जाँच करवाने के तीन तरीके", mr: "चाचणी करण्याचे तीन मार्ग" },
+  route1Title: { en: "Government Soil Health Card", hi: "सरकारी मृदा स्वास्थ्य कार्ड", mr: "सरकारी मृदा आरोग्य पत्रिका" },
+  route1Text: { en: "Under the Soil Health Card scheme, state agriculture staff collect samples and the government pays for collection and testing. Ask your village agriculture assistant or district agriculture office when sampling is happening, and confirm any charge locally.", hi: "मृदा स्वास्थ्य कार्ड योजना में राज्य कृषि विभाग के कर्मचारी नमूने लेते हैं और संग्रह व जाँच का खर्च सरकार उठाती है। नमूना कब लिया जा रहा है यह अपने ग्राम कृषि सहायक या ज़िला कृषि कार्यालय से पूछें, और कोई शुल्क हो तो स्थानीय स्तर पर पक्का करें।", mr: "मृदा आरोग्य पत्रिका योजनेत राज्य कृषी विभागाचे कर्मचारी नमुने घेतात आणि नमुना घेणे व चाचणीचा खर्च सरकार करते. नमुने कधी घेतले जात आहेत ते तुमच्या ग्राम कृषी सहायक किंवा जिल्हा कृषी कार्यालयाकडे विचारा आणि कोणतेही शुल्क असल्यास स्थानिक पातळीवर निश्चित करा." },
+  route2Title: { en: "Krishi Vigyan Kendra (KVK)", hi: "कृषि विज्ञान केंद्र (KVK)", mr: "कृषी विज्ञान केंद्र (KVK)" },
+  route2Text: { en: "Your district KVK can advise on sampling and tell you where to test. Some KVKs test soil themselves, so ask before you travel.", hi: "आपके ज़िले का KVK नमूना लेने की सलाह दे सकता है और बता सकता है कि जाँच कहाँ होगी। कुछ KVK खुद मिट्टी जाँचते हैं; जाने से पहले पूछ लें।", mr: "तुमच्या जिल्ह्याचे KVK नमुना घेण्याबाबत सल्ला देऊ शकते आणि चाचणी कुठे होईल ते सांगू शकते. काही KVK स्वतः माती तपासतात; जाण्यापूर्वी विचारून घ्या." },
+  route3Title: { en: "University or private lab", hi: "विश्वविद्यालय या निजी लैब", mr: "विद्यापीठ किंवा खासगी प्रयोगशाळा" },
+  route3Text: { en: "Agricultural universities and private labs test for a fee. Ask for the same 12 tests as the Soil Health Card (pH, EC, organic carbon, N, P, K, S, Zn, Fe, Cu, Mn, B) so you can enter the results here.", hi: "कृषि विश्वविद्यालय और निजी लैब शुल्क लेकर जाँच करते हैं। मृदा स्वास्थ्य कार्ड जैसी ही 12 जाँचें माँगें (pH, EC, जैविक कार्बन, N, P, K, S, Zn, Fe, Cu, Mn, B) ताकि नतीजे यहाँ भर सकें।", mr: "कृषी विद्यापीठे व खासगी प्रयोगशाळा शुल्क घेऊन चाचणी करतात. मृदा आरोग्य पत्रिकेप्रमाणेच १२ चाचण्या मागा (pH, EC, सेंद्रिय कर्ब, N, P, K, S, Zn, Fe, Cu, Mn, B) म्हणजे निकाल येथे भरता येतील." },
+  sampleTitle: { en: "How to take a soil sample", hi: "मिट्टी का नमूना कैसे लें", mr: "मातीचा नमुना कसा घ्यावा" },
+  sample1: { en: "When: after harvest and before sowing or fertiliser. Avoid wet soil and the weeks right after manure or fertiliser.", hi: "कब: कटाई के बाद और बुवाई या खाद डालने से पहले। गीली मिट्टी और खाद डालने के तुरंत बाद के हफ्तों से बचें।", mr: "केव्हा: काढणीनंतर व पेरणी किंवा खत देण्यापूर्वी. ओली माती आणि खत दिल्यानंतरचे लगेचचे आठवडे टाळा." },
+  sample2: { en: "Where: walk across the field in a zigzag and sample 6–10 spots. Skip bunds, trees, compost heaps, water channels and wet patches.", hi: "कहाँ: खेत में टेढ़े-मेढ़े (ज़िगज़ैग) चलें और 6–10 जगहों से नमूना लें। मेड़, पेड़, कम्पोस्ट ढेर, पानी की नाली और गीली जगहें छोड़ें।", mr: "कुठे: शेतात नागमोडी चाला व ६–१० ठिकाणांहून नमुना घ्या. बांध, झाडे, कंपोस्टचे ढीग, पाण्याचे पाट व ओली जागा टाळा." },
+  sample3: { en: "How: clear the surface litter, dig a V-shaped pit 15–20 cm deep, and cut a thin slice of soil from the top to the bottom of one side.", hi: "कैसे: ऊपर का कचरा हटाएँ, 15–20 सेमी गहरा V आकार का गड्ढा खोदें और एक तरफ़ से ऊपर से नीचे तक मिट्टी की पतली परत काटें।", mr: "कसे: वरचा कचरा बाजूला करा, १५–२० सेंमी खोल V आकाराचा खड्डा खणा आणि एका बाजूने वरून खालपर्यंत मातीचा पातळ थर कापा." },
+  sample4: { en: "Mix: put all slices on a clean cloth or plastic sheet, mix well, then keep about half a kilo. Use clean tools, not ones used for fertiliser.", hi: "मिलाएँ: सारी परतें साफ़ कपड़े या प्लास्टिक पर रखकर अच्छी तरह मिलाएँ, फिर लगभग आधा किलो रखें। साफ़ औज़ार लें, खाद वाले नहीं।", mr: "मिसळा: सर्व थर स्वच्छ कापडावर किंवा प्लास्टिकवर टाका, नीट मिसळा व सुमारे अर्धा किलो ठेवा. स्वच्छ अवजारे वापरा, खतासाठी वापरलेली नको." },
+  sample5: { en: "Label: dry it in shade, put it in a clean bag, and write your name, survey number, date, last crop and the crop you plan. Use one sample per field.", hi: "लेबल: छाँव में सुखाएँ, साफ़ थैली में रखें और अपना नाम, सर्वे नंबर, तारीख, पिछली फसल और अगली फसल लिखें। हर खेत का अलग नमूना लें।", mr: "लेबल: सावलीत वाळवा, स्वच्छ पिशवीत ठेवा आणि तुमचे नाव, गट/सर्वे क्रमांक, तारीख, मागील पीक व पुढील नियोजित पीक लिहा. प्रत्येक शेताचा वेगळा नमुना घ्या." },
+  helpTitle: { en: "Find help near you", hi: "अपने पास मदद खोजें", mr: "तुमच्या जवळ मदत शोधा" },
+  linkPortal: { en: "Soil Health Card portal", hi: "मृदा स्वास्थ्य कार्ड पोर्टल", mr: "मृदा आरोग्य पत्रिका पोर्टल" },
+  linkPortalSub: { en: "Track your sample, print your card, find a lab", hi: "अपना नमूना ट्रैक करें, कार्ड प्रिंट करें, लैब खोजें", mr: "तुमचा नमुना ट्रॅक करा, पत्रिका छापा, प्रयोगशाळा शोधा" },
+  linkKvk: { en: "Find your KVK", hi: "अपना KVK खोजें", mr: "तुमचे KVK शोधा" },
+  linkKvkSub: { en: "ICAR portal: search by state and district", hi: "ICAR पोर्टल: राज्य और ज़िले से खोजें", mr: "ICAR पोर्टल: राज्य व जिल्ह्यानुसार शोधा" },
+  linkMaps: { en: "Soil testing labs on the map", hi: "नक्शे पर मिट्टी जाँच लैब", mr: "नकाशावर माती परीक्षण प्रयोगशाळा" },
+  linkMapsSub: { en: "Opens a Google Maps search", hi: "Google Maps खोज खुलेगी", mr: "Google Maps शोध उघडेल" },
+  linkCall: { en: "Kisan Call Centre: 1800-180-1551", hi: "किसान कॉल सेंटर: 1800-180-1551", mr: "किसान कॉल सेंटर: 1800-180-1551" },
+  linkCallSub: { en: "Toll-free, 6 am to 10 pm", hi: "टोल-फ्री, सुबह 6 से रात 10 बजे", mr: "टोल-फ्री, सकाळी ६ ते रात्री १०" },
+  helpNote: { en: "KrishiGuide does not list labs itself. These buttons open official sites or a map search, so check timings and charges before you go.", hi: "KrishiGuide खुद लैब की सूची नहीं देता। ये बटन सरकारी साइट या नक्शे की खोज खोलते हैं, इसलिए जाने से पहले समय और शुल्क पूछ लें।", mr: "KrishiGuide स्वतः प्रयोगशाळांची यादी देत नाही. ही बटणे अधिकृत संकेतस्थळे किंवा नकाशा शोध उघडतात, म्हणून जाण्यापूर्वी वेळ व शुल्क विचारा." },
+  carryTitle: { en: "Take with you", hi: "साथ ले जाएँ", mr: "सोबत घ्या" },
+  carryText: { en: "Your labelled sample, survey number or land record, your mobile number, and a note of the crop you plan to grow.", hi: "लेबल लगा नमूना, सर्वे नंबर या ज़मीन का रिकॉर्ड, मोबाइल नंबर, और अगली फसल का नोट।", mr: "लेबल लावलेला नमुना, गट/सर्वे क्रमांक किंवा जमिनीचा उतारा, मोबाइल क्रमांक आणि घेणार असलेल्या पिकाची नोंद." },
+  gotReport: { en: "Got your report? Enter it here", hi: "रिपोर्ट मिल गई? यहाँ भरें", mr: "अहवाल मिळाला? येथे भरा" },
+  chipGuide: { en: "Guide + official links", hi: "गाइड + सरकारी लिंक", mr: "मार्गदर्शक + अधिकृत दुवे" },
+  histTitle: { en: "Test history", hi: "जाँच का इतिहास", mr: "चाचणी इतिहास" },
+  histBlurb: { en: "Keep every test result and see if your soil is improving.", hi: "हर जाँच का नतीजा रखें और देखें कि मिट्टी सुधर रही है या नहीं।", mr: "प्रत्येक चाचणीचा निकाल ठेवा आणि माती सुधारते आहे का ते पहा." },
+  histDesc: { en: "Each time you save a Soil Health Card it is kept here. Everything stays on this device.", hi: "हर बार कार्ड सहेजने पर वह यहाँ रखा जाता है। सब कुछ इसी डिवाइस पर रहता है।", mr: "प्रत्येक वेळी पत्रिका जतन केल्यावर ती येथे ठेवली जाते. सर्व काही याच डिव्हाइसवर राहते." },
+  histEmpty: { en: "No saved tests yet. Save a Soil Health Card and it will appear here.", hi: "अभी कोई जाँच सहेजी नहीं है। मृदा स्वास्थ्य कार्ड सहेजें, वह यहाँ दिखेगा।", mr: "अजून कोणतीही चाचणी जतन केलेली नाही. मृदा आरोग्य पत्रिका जतन करा, ती येथे दिसेल." },
+  histAdd: { en: "Add a new test result", hi: "नई जाँच का नतीजा जोड़ें", mr: "नवीन चाचणी निकाल जोडा" },
+  histCompare: { en: "Is it improving?", hi: "क्या सुधार हो रहा है?", mr: "सुधारणा होत आहे का?" },
+  histCompareSub: { en: "Your latest test compared with the one before it.", hi: "आपकी ताज़ा जाँच की पिछली जाँच से तुलना।", mr: "तुमच्या ताज्या चाचणीची आधीच्या चाचणीशी तुलना." },
+  histNeedTwo: { en: "Save a second test to see how your soil is changing.", hi: "मिट्टी में बदलाव देखने के लिए दूसरी जाँच सहेजें।", mr: "माती कशी बदलते आहे ते पाहण्यासाठी दुसरी चाचणी जतन करा." },
+  better: { en: "Better", hi: "बेहतर", mr: "चांगले" },
+  worse: { en: "Worse", hi: "बदतर", mr: "वाईट" },
+  sameRating: { en: "Same rating", hi: "वही रेटिंग", mr: "तीच श्रेणी" },
+  histAll: { en: "All saved tests", hi: "सभी सहेजी जाँचें", mr: "सर्व जतन केलेल्या चाचण्या" },
+  histUntitled: { en: "Soil test", hi: "मिट्टी जाँच", mr: "माती चाचणी" },
+  allFineShort: { en: "All fine", hi: "सब ठीक", mr: "सर्व ठीक" },
+  histDelete: { en: "Delete", hi: "हटाएँ", mr: "काढा" },
+  histConfirm: { en: "Delete this saved test?", hi: "यह सहेजी गई जाँच हटाएँ?", mr: "ही जतन केलेली चाचणी काढायची?" },
+  histDeleted: { en: "Test deleted", hi: "जाँच हटाई गई", mr: "चाचणी काढली" },
+  chipHistNone: { en: "No tests yet", hi: "अभी कोई जाँच नहीं", mr: "अजून चाचणी नाही" },
+  chipHist1: { en: "1 test saved", hi: "1 जाँच सहेजी", mr: "१ चाचणी जतन" },
+  chipHistN: { en: "{n} tests saved", hi: "{n} जाँचें सहेजी", mr: "{n} चाचण्या जतन" },
 };
 
 // ------------------------------------------------------------------ Soil Health Card parameters
@@ -204,6 +256,14 @@ export function isValidValue(id, raw) {
   const p = PARAMS.find((x) => x.id === id);
   const v = Number(raw);
   return Boolean(p) && String(raw).trim() !== '' && Number.isFinite(v) && v >= p.min && v <= p.max;
+}
+
+// Compare one parameter between two tests. TONE_RANK is higher = healthier, so a move up a
+// rank is "better", down is "worse", and staying in the same rating band is "same".
+export function compareValues(id, prev, next) {
+  const a = TONE_RANK[TONE[rateParam(id, Number(prev))]];
+  const b = TONE_RANK[TONE[rateParam(id, Number(next))]];
+  return b > a ? 'better' : b < a ? 'worse' : 'same';
 }
 
 // ------------------------------------------------------------------ Fertilizer & amendment advice
