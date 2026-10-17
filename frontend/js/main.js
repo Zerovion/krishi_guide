@@ -9,6 +9,7 @@ import { renderSimulator } from './views/simulator.js';
 import { renderSchemes } from './views/schemes.js';
 import { renderAssistant } from './views/assistant.js';
 import { renderPlans } from './views/plans.js';
+import { renderSoil } from './views/soil.js';
 
 export const state = {
   lang: localStorage.getItem('krishi_lang') || 'en',
@@ -96,6 +97,7 @@ function applyI18n() {
 // ------------------------------------------------------------------ routing
 const VIEWS = {
   planner: { render: renderPlanner, title: () => t('navPlanner') },
+  soil: { render: renderSoil, title: () => t('navSoil'), subs: ['card', 'finder', 'advice'] },
   rotation: { render: renderRotation, title: () => t('navRotation') },
   calendar: { render: renderCalendar, title: () => t('navCalendar') },
   signals: { render: renderSignals, title: () => t('navSignals') },
@@ -105,14 +107,27 @@ const VIEWS = {
   plans: { render: renderPlans, title: () => t('navPlans') },
 };
 
-export async function showView(name) {
+// The URL is the single source of truth for routing: "#/<view>" or "#/<view>/<sub>".
+// Nothing here keeps module-level route state, so it stays correct even if this module
+// is evaluated more than once.
+export function parseHash() {
+  const [name = '', sub = ''] = location.hash.replace(/^#\/?/, '').split('/');
+  return { name, sub };
+}
+
+// sub === null keeps the sub-screen when re-rendering the same view (language change, refresh);
+// sub === '' goes to the view's top screen (sidebar clicks).
+export async function showView(name, sub = null) {
   if (!VIEWS[name]) name = 'planner';
+  if (sub === null) sub = name === currentView() ? parseHash().sub : '';
+  if (!(VIEWS[name].subs || []).includes(sub)) sub = '';
   document.querySelectorAll('.view').forEach((v) => v.classList.remove('active'));
   document.querySelectorAll('.side-link').forEach((l) => l.classList.toggle('active', l.dataset.view === name));
   const section = $(`view-${name}`);
-  if (section) section.classList.add('active');
+  if (section) { section.classList.add('active'); section.dataset.sub = sub; }
   $('currentPageName').textContent = VIEWS[name].title();
-  history.replaceState(null, '', `#/${name}`);
+  // Keep history.state so a pushed sub-screen entry still knows it was pushed.
+  history.replaceState(history.state, '', sub ? `#/${name}/${sub}` : `#/${name}`);
   window.scrollTo({ top: 0 });
   await VIEWS[name].render();
   applyI18n();
@@ -171,11 +186,14 @@ async function init() {
     const link = e.target.closest('[data-view]');
     if (!link || !link.dataset.view) return;
     e.preventDefault();
-    showView(link.dataset.view);
+    showView(link.dataset.view, '');
   });
+  // Browser Back/Forward and manual hash edits.
   window.addEventListener('hashchange', () => {
-    const name = location.hash.replace('#/', '');
-    if (VIEWS[name] && name !== currentView()) showView(name);
+    const { name, sub } = parseHash();
+    if (!VIEWS[name]) return;
+    const shown = $(`view-${name}`);
+    if (name !== currentView() || sub !== ((shown && shown.dataset.sub) || '')) showView(name, sub);
   });
   $('language').addEventListener('change', (e) => {
     state.lang = e.target.value;
@@ -192,8 +210,8 @@ async function init() {
   $('cropModal').addEventListener('click', (e) => { if (e.target === $('cropModal')) $('cropModal').classList.remove('open'); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') $('cropModal').classList.remove('open'); });
 
-  const hashView = (location.hash.replace('#/', '') || 'planner');
-  await showView(VIEWS[hashView] ? hashView : 'planner');
+  const first = parseHash();
+  await (VIEWS[first.name] ? showView(first.name, first.sub) : showView('planner', ''));
 }
 
 export function currentView() {

@@ -4,12 +4,12 @@
 //  - /api/crops and /api/health: network-first with the last good response as fallback.
 //  - Other /api/ calls: network only; a clear 503 JSON when offline (the UI shows a message,
 //    and the planner falls back to on-device scoring).
-const CACHE = 'krishiguide-shell-v4';
+const CACHE = 'krishiguide-shell-v5';
 const SHELL = [
   './', './index.html', './manifest.webmanifest', './css/app.css',
-  './js/main.js', './js/api.js', './js/i18n.js', './js/offline.js',
+  './js/main.js', './js/api.js', './js/i18n.js', './js/offline.js', './js/soil-data.js',
   './js/views/planner.js', './js/views/rotation.js', './js/views/calendar.js', './js/views/signals.js',
-  './js/views/simulator.js', './js/views/schemes.js', './js/views/assistant.js', './js/views/plans.js',
+  './js/views/simulator.js', './js/views/schemes.js', './js/views/assistant.js', './js/views/plans.js', './js/views/soil.js',
   './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png',
 ];
 
